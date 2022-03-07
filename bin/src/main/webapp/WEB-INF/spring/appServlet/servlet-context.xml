@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for 요청값은 매핑 팀원파일 여기에 추가하기 css, js /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/res/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- 멀티파일 해결사 -->
+		
+	<beans:bean id= "mpr" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean>
+	<!-- 베이스 패키지 이름 적어서 그 페이지에 @ service해줘서 메모리에 올리고 프론트컨트롤러에서 어토와이어드 하고 해당클래스 사용가능 -->
+	<context:component-scan base-package="com.somebody.controller" />
+	<context:component-scan base-package="com.somebody.serviece.*" />
+	<context:component-scan base-package="kr.co.icia.plzec.services" />
+	
+</beans:beans>

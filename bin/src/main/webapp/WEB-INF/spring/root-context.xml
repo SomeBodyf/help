@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components 
+		dbcp 만들어주는 법 (hiraki 처음 불르는 클래스 안 메서드 네임불러서 만듬 ) -->
+	<bean id="somebody" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="jdbcUrl"
+			value="jdbc:oracle:thin:@icia.cxu8ltcsvljy.ap-northeast-2.rds.amazonaws.com:1521:ORCL"></property>
+		<property name="username" value="BON"></property>
+		<property name="password" value="1234"></property>
+	</bean>
+	<!-- 만든 dbcp 사용 (생성자에 접근해야함) -->
+	<bean id="ds" class="com.zaxxer.hikari.HikariDataSource"
+		destroy-method="close">
+		<constructor-arg ref="somebody"></constructor-arg>
+	</bean>
+	<!-- 각빈이 메모리를 할당해주는 지 TEST클래스에서 확인가능 -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="ds"></property>
+	</bean>
+	<!--트렌젝션 수동처리 -->
+	<bean id="txmanager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds"></property>
+	</bean>
+	<!-- 오라클 인터페이스 주소 설정해주기 -->
+	<mybatis-spring:scan base-package="com.somebody.db"></mybatis-spring:scan>
+
+</beans>
