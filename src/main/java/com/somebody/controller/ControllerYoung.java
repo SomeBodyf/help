@@ -28,8 +28,6 @@ public class ControllerYoung {
 	@Autowired
 	Authenticaion auth;
 	@Autowired
-	Lesson ls;
-	@Autowired
 	Equipment eq;
 	@Autowired
 	Pay pa;

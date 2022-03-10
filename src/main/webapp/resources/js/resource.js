@@ -22,6 +22,12 @@ function getfoodApi() {
 		alert(data);
 	}
 	
+	
+	function UploadFilebyAJax(){
+	
+ const excel = "d";
+	whatsend("meLogin", sttcode,"regedemp",true,"post");
+	}
 
 function jstest(){
 	

@@ -29,10 +29,7 @@ public class Pay extends CommonMethod{
 	private MapperUone mu;
 	
 	private ModelAndView mav;
-	@Autowired
-	private ProjectUtils pu;
-	@Autowired
-	private Encryption enc;
+
 	@Autowired
 	private DataSourceTransactionManager tx;
 

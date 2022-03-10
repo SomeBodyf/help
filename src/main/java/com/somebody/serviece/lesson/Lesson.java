@@ -13,6 +13,7 @@ import com.somebody.db.MapperDong;
 import com.somebody.db.MapperUone;
 import com.somebody.db.MapperYoung;
 
+import beans.Lessons;
 import kr.co.icia.plzec.services.Encryption;
 import kr.co.icia.plzec.services.ProjectUtils;
 
@@ -27,10 +28,7 @@ public class Lesson extends CommonMethod{
 	@Autowired
 	private MapperUone mu;
 	private ModelAndView mav;
-	@Autowired
-	private ProjectUtils pu;
-	@Autowired
-	private Encryption enc;
+	
 	@Autowired
 	private DataSourceTransactionManager tx;
 
@@ -40,7 +38,7 @@ public class Lesson extends CommonMethod{
 
 	String page = null;
 
-	public void backController(String sCode, Lesson ls) {
+	public void backController(String sCode, Lessons ls) {
 		String gs = null;
 		String senddata = null;
 
@@ -78,50 +76,50 @@ public class Lesson extends CommonMethod{
 		}
 		
 	}
-	public void lessonMg(Lesson ls) {
+	public void lessonMg(Lessons ls) {
 		
 		
 	}
 
-	public void searchLesson(Lesson ls) {
+	public void searchLesson(Lessons ls) {
 		
 		
 	}
 
-	public void getLsCaList(Lesson ls) {
+	public void getLsCaList(Lessons ls) {
 	
 		
 	}
 
-	public void insLsPay(Lesson ls) {
+	public void insLsPay(Lessons ls) {
 		
 		
 	}
 
-	public void getMaxLesson(Lesson ls) {
+	public void getMaxLesson(Lessons ls) {
 		
 		
 	}
 
-	public void insLesson(Lesson ls) {
+	public void insLesson(Lessons ls) {
 	
 		
 	}
 
-	public void modLesson(Lesson ls) {
+	public void modLesson(Lessons ls) {
 	
 		
 	}
 
-	public void lsMemDetail(Lesson ls) {
+	public void lsMemDetail(Lessons ls) {
 		
 		
 	}
-	public void modLsSuccess(Lesson ls) {
+	public void modLsSuccess(Lessons ls) {
 		
 		
 	}
-	public void delLesson(Lesson ls) {
+	public void delLesson(Lessons ls) {
 	
 		
 	}

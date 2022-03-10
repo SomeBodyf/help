@@ -28,10 +28,7 @@ public class Equipment extends CommonMethod {
 	@Autowired
 	private MapperUone mu;
 	private ModelAndView mav;
-	@Autowired
-	private ProjectUtils pu;
-	@Autowired
-	private Encryption enc;
+	
 	@Autowired
 	private DataSourceTransactionManager tx;
 
@@ -64,9 +61,7 @@ public class Equipment extends CommonMethod {
 		case "G07":
 			modGoods(eq);
 			break;
-		
 		}
-		
 	}
 
 	private void goGoodsPage(Equipments eq) {

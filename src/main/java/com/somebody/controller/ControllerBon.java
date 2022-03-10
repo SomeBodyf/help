@@ -27,15 +27,8 @@ public class ControllerBon {
 	@Autowired
 	Authenticaion auth;
 	@Autowired
-	Equipment eq;
-	@Autowired
-	Lesson ls;
-	@Autowired
 	Member me;
-	@Autowired
-	Pay pa;
-	@Autowired
-	Staff sf ;
+
 
 	private static final Logger logger = LoggerFactory.getLogger(ControllerBon.class);
 
@@ -44,10 +37,10 @@ public class ControllerBon {
 		return "login";
 	}
 
-	@RequestMapping(value = "/meLogin", method = RequestMethod.POST)
-	public void meLogin(Model model, @ModelAttribute Centers ct) {
-		System.out.println(ct.getCtCode());
-		this.auth.backController("A03",ct);
+	@RequestMapping(value = "/meLogin", method = RequestMethod.GET)
+	public String meLogin(Model model, @ModelAttribute Centers ct) {
+		return "meMg";
+		//this.auth.backController("A03",ct);
 	}
 
 	@RequestMapping(value = "/ctLogin", method = RequestMethod.POST)

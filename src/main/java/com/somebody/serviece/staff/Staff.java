@@ -27,10 +27,7 @@ public class Staff extends CommonMethod{
 	@Autowired
 	private MapperUone mu;
 	private ModelAndView mav;
-	@Autowired
-	private ProjectUtils pu;
-	@Autowired
-	private Encryption enc;
+	
 	@Autowired
 	private DataSourceTransactionManager tx;
 

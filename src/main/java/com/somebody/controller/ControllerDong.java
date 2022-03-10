@@ -11,6 +11,7 @@ import com.somebody.serviece.lesson.Lesson;
 import com.somebody.serviece.staff.Staff;
 
 import beans.Centers;
+import beans.Lessons;
 
 @Controller 
 public class ControllerDong {
@@ -24,7 +25,7 @@ public class ControllerDong {
 		this.sf.backController("S01", sf);
 	}
 	@RequestMapping(value = "/goLessonPage", method = RequestMethod.POST)
-	public void goLessonPage(Model model, @ModelAttribute Lesson ls) {
+	public void goLessonPage(Model model, @ModelAttribute Lessons ls) {
 		this.ls.backController("L01", ls);
 	}
 

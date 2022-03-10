@@ -55,7 +55,6 @@ public class Authenticaion extends CommonMethod {
 		String senddata = null;
 
 		switch (sCode) {
-		
 		case "A03":
 			ctLogin(ct);
 			break;
