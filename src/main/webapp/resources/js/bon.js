@@ -4,29 +4,12 @@
 
 let jsPIp;
 let list;
-message = "요즘 난 Alright";
-message = "너 없이는 Alright";
 
 
-function getfoodApi() {
-	
-	
-	url = "http://apis.data.go.kr/1471000/FoodNtrIrdntInfoService1/getFoodNtrItdntList1?";
-	url += "serviceKey=ksbKIXkJYJXghDThBDBGwyheTGM1%2Fe6GWQWen0oNQMkmDBEAYvcZKgRAmOtzIYtBHbkC1ei41ECMgoCx2ePt0A%3D%3D&desc_kor=%EB%B0%94%EB%82%98%EB%82%98%EC%B9%A9";
-	url += "&pageNo=1&numOfRows=3&bgn_year=2017&animal_plant=(%EC%9C%A0)%EB%8F%8C%EC%BD%94%EB%A6%AC%EC%95%84&type=xml";
-	 
-	whatsend(url+ "성공","getedData",true,"get");
-	}
-	
-	function getedData(data){
-		alert(data);
-	}
-	
 	
 	function UploadFilebyAJax(){
-	
- const excel = "d";
-	whatsend("meLogin", sttcode,"regedemp",true,"post");
+
+	whatsend("meLogin", "","regedemp",true,"post");
 	}
 
 function jstest(){
@@ -136,7 +119,7 @@ function udtedGoodsInfo(data){
 }
 
 
-function openModal() {
+function logInModal() {
 	let container =  document.getElementById("container");
 	container.style.filter = "alpha(Opacity=50)";
 	container.style.display = "block";

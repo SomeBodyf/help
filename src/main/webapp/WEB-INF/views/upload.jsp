@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 		form.submit();
 	}
 	function UploadFilebyAJax(formName) {
+		
 		 const form = document.getElementsByName(formName)[0];
 
 		 //폼서브밋vs 에이작스 send
@@ -38,6 +40,7 @@
 		ajax.open("post", action, true);
 		//ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8 ");
 		}
+		
 		ajax.send(data);
 	}
 	
@@ -135,15 +138,16 @@ input {
 				<td><input type="file" name="file" multiple/></td>
 			</tr>
 			<tr>
-				<td><input type="text" name="title"  placeholder="파일명"/></td>
+				<td><input type="text" name="excelTitle"  placeholder="파일명"/></td>
 			</tr>
 			<tr >
 				<td><input type="text" name="content" placeholder="내용"/></td>
 			</tr>
 			<tr>
+			<td>전송 전 엑셀데이터 형식을 반드시 숫자로 변경해주세요.</td>
 				<td>					
 					<input type="button" id="btn" value="파일전송"
-					onClick="UploadFilebyAJax('nname2')" /></td>
+					onClick="UploadFilebyAJax('excel')" /></td>
 			</tr>
 		</table>
 	</form>

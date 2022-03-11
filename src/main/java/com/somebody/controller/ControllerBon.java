@@ -34,7 +34,7 @@ public class ControllerBon {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
-		return "login";
+		return "home";
 	}
 
 	@RequestMapping(value = "/meLogin", method = RequestMethod.GET)

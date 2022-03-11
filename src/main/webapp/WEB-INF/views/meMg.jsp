@@ -40,20 +40,21 @@ pageEncoding="UTF-8"%>
 				<input type="button" class="addMember" value="등록" onClick="getCaList(this)"/>
 		</div>
 			<div class="category">
-				<p class="menuTitle" id="meMg" onClick="meMg()">회원관리</p>
-			</div>
-			<div class="category">
-				<p class="menuTitle" id="sfMg" onClick="sfMg()">직원관리</p>
-			</div>
-			<div class="category">
-				<p class="menuTitle" id="lessonMg" onClick="lessonMg()">수업관리</p>
-			</div>
-			<div class="category">
-				<p class="menuTitle" id="goodsMg" onClick="goodsMg()">장비관리</p>
-			</div>
-			<div class="category">
-				<p class="menuTitle" id="payMg" onClick="payMg()">결제관리</p>
-			</div>
+            <p class="menuTitle" id="meMg" onClick="goMePage()">회원관리</p>
+         </div>
+         <div class="category">
+            <p class="menuTitle" id="sfMg" onClick="goSfPage()">직원관리</p>
+            
+         </div>
+         <div class="category">
+            <p class="menuTitle" id="lessonMg" onClick="goLessonPage()">수업관리</p>
+         </div>
+         <div class="category">
+            <p class="menuTitle" id="goodsMg" onClick="goGoodsPage()">장비관리</p>
+         </div>
+         <div class="category">
+            <p class="menuTitle" id="payMg" onClick="goPayPage()">결제관리</p>
+         </div>
 	</div>
 </body>
 </html>
