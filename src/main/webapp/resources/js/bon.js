@@ -24,7 +24,6 @@ function getgoodsList(action, stcode){
 	//jsondata.push({"stCode":stcode});
 	//const clientdata = JSON.stringify(jsondata);
 	whatsend(action,"","writegoodslist",false,"post");
-
 }
 let data2;
 function writegoodslist(data){
@@ -119,15 +118,27 @@ function udtedGoodsInfo(data){
 }
 
 
+
+
+function meLogIn(){
+	let userid =  document.getElementById("id").value;
+	let userpw =  document.getElementById("pw").value;
+	
+	let jsondata = [];
+	jsondata.push({"meCode":userid,"mePw":userpw});
+	const data = JSON.stringify(jsondata);
+	alert(data);
+	whatsend("meLogin",data,"writegoodslist",false,"post");
+	
+}
 function logInModal() {
 	let container =  document.getElementById("container");
 	container.style.filter = "alpha(Opacity=50)";
 	container.style.display = "block";
 }
 function closeModal(obj) {
-	let uplodedfile =  document.getElementById("uploadfile");
-	uplodedfile.innerHTML = "<input type='file' calss='mbtn' name = 'file' value='사진등록'/>";
 	let container =  document.getElementById("container");
+	
 	container.style.display = "none";
 }
 
@@ -166,45 +177,7 @@ function whatsend(action, data, fn, content,method) {
 	
 	ajax.send(data);
 }
-function getAjaxJsonUsingJquery(action, clientData, fn) {
-		$.ajax({
-			async : true,
-			type : "post",
-			url : action,
-			data : clientData,
-			contentType : "application/x-www-form-urlencoded; charset=utf-8",
-			dataType : "json",
-			success : function(jsonObject){
-				alert("AJAX 통신 성공으로 서버 데이터가 도착했습니다.");
-				alert(JSON.stringify(jsonObject));
-				window[fn](jsonObject);
-			},
-			beforeSend : function(){
-				// AJAX 통신 요청 전 호출되는 이벤트
-				alert("AJAX 통신을 시작합니다.");
-			},
-			complete : function(){
-				// AJAX 통신이 완료 될 때 호출되는 이벤트
-				alert("AJAX 통신을 종료합니다.");
-			},
-			err : function(error){
-				// 통신 실패시 호출되는 이벤트
-				alert("AJAX 통신실패했습니다.");
-			},
-			timeout : 10000
-		});
-	}
-	
-function getmemList(list, stcode, elcode){
 
-	let data = "stCode=" + encodeURIComponent(stcode);
-	
-	//getAjaxJson(list, data, "getedmemlist", "post")
-	
-	
-	getAjaxJsonUsingJquery("ajax/MemberList", data, "getedmemlist");
-	
-}
 
 function getedmemlist(data){
 	 message = '<table><tr><td>매장코드</td><td>회원코드</td><td>회원이름</td><td>회원등급</td></tr>';

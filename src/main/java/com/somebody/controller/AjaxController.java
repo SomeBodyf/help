@@ -3,6 +3,7 @@ package com.somebody.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -186,8 +187,8 @@ public class AjaxController {
 		this.pa.backController("P03", pa);
 	}
 	@RequestMapping(value = "/goMeJoinPage", method = RequestMethod.POST)
-	public void goMeJoinPage(Model model, @ModelAttribute Members me) {
-		this.auth.backController2("J03", me);
+	public void goMeJoinPage(Model model,@RequestBody Members[] me) {
+		this.auth.backController2("J03", model.addAttribute("sendbean",me[0]));
 	}
 	
 	
@@ -234,8 +235,8 @@ public class AjaxController {
 		this.me.backController("C11",me);
 	}
 	@RequestMapping(value = "/checkMePw", method = RequestMethod.POST)
-	public void checkMePw(Model model, @ModelAttribute Members me) {
-		this.auth.backController2("C14",me);
+	public void checkMePw(Model model, @RequestBody Members[] me) {
+		this.auth.backController2("C14",model.addAttribute("sendbean",me[0]));
 	}
 	@RequestMapping(value = "/modMeMg", method = RequestMethod.POST)
 	public void modMeMg(Model model, @ModelAttribute Members me) {

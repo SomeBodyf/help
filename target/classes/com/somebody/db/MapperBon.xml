@@ -3,8 +3,14 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace = "com.somebody.db.MapperBon">
-	<insert id = "is" parameterType = "beans.Centers">
-		insert into kmasters.ct (CTCODE,CTNAME,CTADDRESS,CTCEO,CTNUMBER) values(#{ctCode},'30','39','22','66667') 
-	</insert>
+	<select id = "meLogin" parameterType = "beans.Members" resultType ="string">
+	SELECT MEPASSWORD  AS mePw FROM  kmasters.ME  WHERE MECODE = #{meCode} 
+	</select>
+	
+	<select id = "meInfo" parameterType = "beans.Members" resultType ="beans.Members">
+	SELECT CTCODE, CTNAME,MECODE, MENAME, MEBIRTH, MEGENDER from kmasters.PA 
+	INNER JOIN KMASTERS.ME ON MECODE = PAMECODE 
+	INNER JOIN KMASTERS.CT ON CTCODE = PALPCTCODE WHERE PAMECODE = #{meCode} 
+	</select>
 </mapper>
 

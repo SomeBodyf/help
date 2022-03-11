@@ -1,5 +1,14 @@
 package com.somebody.serviece.auth;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.List;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.somebody.db.CommonMethod;
@@ -33,8 +43,7 @@ public class Authenticaion extends CommonMethod {
 	private MapperDong md;
 	@Autowired
 	private MapperUone mo;
-	
-	
+
 	private ModelAndView mav;
 	@Autowired
 	private ProjectUtils pu;
@@ -42,17 +51,20 @@ public class Authenticaion extends CommonMethod {
 	private Encryption enc;
 	@Autowired
 	HttpSession session;
-	
+
+	Members mme;
+
 	String page = null;
+	String message = null;
 	boolean tran = false;
 
 	public Authenticaion() {
 		mav = new ModelAndView();
+		
 	}
 
 	public void backController(String sCode, Centers ct) {
 		String gs = null;
-		String senddata = null;
 
 		switch (sCode) {
 		case "A03":
@@ -83,42 +95,89 @@ public class Authenticaion extends CommonMethod {
 
 	}
 
-	public void backController2(String sCode, Members me) {
+	public void backController2(String sCode, Model model) {
+
 		String gs = null;
-		String senddata = null;
+		List<Members> senddata = null;
 
 		switch (sCode) {
-		case "A02":
-			meLogin(me);
-			break;
+		
 		case "J03":
-			goMeJoinPage(me);
+			goMeJoinPage(model);
 			break;
 		case "C14":
-			checkMePw(me);
+			checkMePw(model);
 			break;
 		}
+
 	}
-	public void checkMePw(Members me) {
+	
+	
+	public ModelAndView backControllerM(String sCode, Members me) {
+		String gs = null;
+		List<Members> senddata = null;
+		switch (sCode) {
+		case "A02":
+			meLogin( me);
+			break;
+		}
+		return this.mav;
+	}
+
+
+	public void checkMePw(Model model) {
+
+	}
+
+	private void goMeJoinPage(Model model) {
+
+	}
+
+	public ModelAndView meLogin(Members mme) {
+
+		//아이디비번제어 일치시 로그인기록 저장
+		String changedPw = this.enc.encode(mme.getMePw());
+	
+		System.out.println(mme.getMePw()+"여기비번");
+		System.out.println(changedPw);
 		
 
-	}
+		this.tranconfig(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED,false);
 
-	private void goMeJoinPage(Members me) {
+		try {
+			if ((String)this.pu.getAttribute("meInfo") == null) {
+				if (changedPw != null) {
+				System.out.println(mme.getMeCode());
+				System.out.println(this.mb.meLogin(mme)+"s");
+				
+				
+				
+				
+				if (enc.matches(this.mb.meLogin(mme),changedPw)) {
+					System.out.println(11);
+					//로그인 기록은 센터만 하기로 함 
+					this.mav.addObject("meInfo", this.mb.meInfo(mme));
+					tran = true;
+					this.tranend(tran);
+					pu.setAttribute("meInfo", mme);
+					session.setMaxInactiveInterval(30*30) ;
+					this.mav.setViewName("meMg");
+
+				}else {
+					this.message = "비밀번호가 일치하지 않습니다.";
+					this.mav.addObject(this.message);
+				}
+			}
+		}} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return this.mav;
+	}
 		
-
-	}
-
-	public void meLogin(Members me) {
-
-	}
 
 	public void ctLogin(Centers ct) {
-		this.tranconfig(TransactionDefinition.PROPAGATION_REQUIRED,TransactionDefinition.ISOLATION_READ_COMMITTED,false);
-		if(this.convertToBoolean(this.mb.is(ct))) {
-			tran = true;
-		}
-	this.tranend(tran);
+
 	}
 
 	public void logOut(Centers ct) {

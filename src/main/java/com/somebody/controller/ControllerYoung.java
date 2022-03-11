@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -43,8 +44,8 @@ public class ControllerYoung {
 	}
 	
 	@RequestMapping(value = "/psJoin", method = RequestMethod.POST)
-	public void psJoin(Model model, @ModelAttribute Members me) {
-		this.auth.backController2("P05",me);
+	public void psJoin(Model model, @RequestBody Members[] me) {
+		this.auth.backController2("P05",model.addAttribute("mebean",me[0]));
 	}
 	
 	

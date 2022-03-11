@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,6 +29,7 @@ public class ControllerBon {
 	Authenticaion auth;
 	@Autowired
 	Member me;
+	ModelAndView mav;
 
 
 	private static final Logger logger = LoggerFactory.getLogger(ControllerBon.class);
@@ -37,10 +39,10 @@ public class ControllerBon {
 		return "home";
 	}
 
-	@RequestMapping(value = "/meLogin", method = RequestMethod.GET)
-	public String meLogin(Model model, @ModelAttribute Centers ct) {
-		return "meMg";
-		//this.auth.backController("A03",ct);
+	@RequestMapping(value = "/meLogin", method = RequestMethod.POST)
+	public ModelAndView meLogin(Model model, @RequestBody Members[] me) {
+		System.out.println(me[0].getMePw());
+		return this.auth.backControllerM("A02",me[0]);
 	}
 
 	@RequestMapping(value = "/ctLogin", method = RequestMethod.POST)
