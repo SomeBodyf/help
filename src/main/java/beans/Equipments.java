@@ -8,7 +8,10 @@ public class Equipments {
 	private String eqCode;
 	private String eqName;
 	private String eqCaCode;
+	private String eqCaName;
 	private String egDate;
-	private String egSfCode;
-	private String egstCode;
+	private String sfCode;
+	private String sfName;
+	private String stCode;
+	private String stName;
 }

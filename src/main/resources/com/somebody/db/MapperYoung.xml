@@ -8,4 +8,10 @@
 	<insert id = "is" parameterType = "beans.Centers">
 	insert into kmasters.ct (CTCODE,CTNAME,CTADDRESS,CTCEO,CTNUMBER) values('3000','24','42','42','42') 
 	</insert>
+	<select id="goodsList" resultType = "beans.Equipments" parameterType = "beans.Equipments">
+		select * from kmasters.GoodsView where ctCode = ${ctCode}
+	</select>
+	<select id="searchGoods" resultType = "beans.Equipments" parameterType = "beans.Equipments">
+		select * from kmasters.GoodsView where ctCode = '${ctCode}' and ${eqCaCode} = '${eqCaName}'
+	</select>
 </mapper>
