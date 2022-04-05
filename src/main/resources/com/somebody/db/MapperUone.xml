@@ -33,9 +33,9 @@
          WHERE ME.MECODE = #{meCode} AND LS.LSSFCODE = RE.RELSSFCODE
    </select>
       
-   <select id = "meInbodyMg" resultType = "beans.Inbodys" parameterType = "beans.Inbodys">
+     <select id = "meInbodyMg" resultType = "beans.Inbodys" parameterType = "beans.Inbodys">
    SELECT DISTINCT SUBSTR(IDIBCODE,1,5) AS meCode,
-   	IDCOUNT AS idCount,
+      IDCOUNT AS idCount,
         DAUNIT AS daUnit,
         DANAME AS daName,
         SUBSTR(IDIBCODE,6,14) AS ibDate,
@@ -53,7 +53,7 @@
    FROM KMASTERS.ID INNER JOIN KMASTERS.DA ON ID.IDDACODE = DA.DACODE
                     INNER JOIN KMASTERS.TA ON  ID.IDIBCODE = TA.TAIDIBCODE
                     INNER JOIN KMASTERS.EX ON TA.TAEXCODE = EX.EXCODE
-                    INNER JOIN KMASTERS.PE ON EX.EXCODE = PE.PETAEXCODE
+                    INNER JOIN KMASTERS.PE ON EX.EXCODE = PE.PETAEXCODE and pe.petaidibcode = id.idibcode
                     INNER JOIN KMASTERS.ST ON PE.PESTCODE = ST.STCODE
    WHERE SUBSTR(IDIBCODE,6,8) = #{ibDate1} AND SUBSTR(IDIBCODE,1,5) = #{meCode} ORDER BY DANAME ASC
    </select>
@@ -66,8 +66,8 @@
       UPDATE KMASTERS.ME SET MEBIRTH = #{meBirth} , MENAME = #{meName} , MENUMBER = #{meNumber} WHERE MECODE = #{meCode}
    </update>
 
-   <update id="insTaState" parameterType = "beans.Inbodys">
-      UPDATE KMASTERS.PE SET PE.PESTCODE = #{peStcode} WHERE SUBSTR(PE.PETAIDIBCODE,6,14)= #{ibDate}
+  <update id="insTaState" parameterType = "beans.Inbodys">
+      UPDATE KMASTERS.PE SET PE.PESTCODE = '${peStcode}' WHERE SUBSTR(PE.PETAIDIBCODE,6,14)= ${ibDate}
    </update>
    
    <select id="findDay" parameterType = "beans.Inbodys" resultType = "beans.Inbodys">
@@ -91,7 +91,7 @@
    FROM KMASTERS.ID INNER JOIN KMASTERS.DA ON ID.IDDACODE = DA.DACODE
                     INNER JOIN KMASTERS.TA ON  ID.IDIBCODE = TA.TAIDIBCODE
                     INNER JOIN KMASTERS.EX ON TA.TAEXCODE = EX.EXCODE
-                    INNER JOIN KMASTERS.PE ON EX.EXCODE = PE.PETAEXCODE
+                    INNER JOIN KMASTERS.PE ON EX.EXCODE = PE.PETAEXCODE 
                     INNER JOIN KMASTERS.ST ON PE.PESTCODE = ST.STCODE
    WHERE SUBSTR(IDIBCODE,6,14) = (SELECT SUBSTR(MAX(TAIDIBCODE),6,14) FROM KMASTERS.TA WHERE SUBSTR(TAIDIBCODE,1,5) = #{meCode}) AND SUBSTR(IDIBCODE,1,5) = #{meCode} ORDER BY DANAME ASC
    </select>

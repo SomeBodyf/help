@@ -165,60 +165,59 @@ function getMeDtail(json){
 new Chart(document.getElementById("inbodyChart"), raData);
 }
 }
-
 function modMeDt(mecode){
-	const butbut = document.getElementById("butbut");
-	butbut.removeAttribute("onClick");
-	butbut.setAttribute("onClick","modMeDtAjax()");
-	butbut.innerText = '저장';
-	document.getElementById("mdtitle").innerText = "회원수정";
-	var data = '<div class=\"input\"><i class=\"bx bx-user icon\"></i><input type ="text" id = "meName" placeholder="'+meDtMod.meName+'"/></div>';
-	data += '<div class=\"input\"><i class=\"bx bx-phone\"></i><input type="text" id ="meNumber" placeholder="'+meDtMod.meNumber+'" title="형식 01012341234" /></div>';
-	data += '<div class=\"input\"><i class=\"bx bx-envelope icon\"></i><input type = "email" id = "emailName" placeholder="'+meDtMod.meEmail.split('@')[0]+'"/></div>';/*<span>@<span><select id="juso">';
-	data += '<option value = "return">주소선택</option>'
-	data += '<option value = "daun.net">daun</option>';
-	data += '<option value = "naver.com">naver</option>';
-	data += '<option value = "google.com">GMAIL</option>';
-	data += '<option value = "yahoo.com">yahoo</option>';
-	data += '<option value = "outlook.com">outlook.com</option>';
-	data += '<option value = "nate.com">nate</option>';
-	data += '<option value = "dreamwiz.com">dreamwiz</option>';
-	data += '<option value = "korea.com">korea.com</option></select>*/'</div>';
-	data += '<div><button class=\"btn\" onClick = "modMeDtAjax(\''+mecode+'\')">MOD<button></div>';
-	document.getElementById("mdbody").innerHTML = data;
-	const juso = document.getElementById("juso");
-	/*for(i=0;i<juso.length;i++){
-		if(juso.options[i].value==meDtMod.meEmail.split('@')[1]){
-			juso.options[i].setAttribute('selected', '');
-		}
-	}*/
-	YopenModal();
+   const butbut = document.getElementById("butbut");
+   butbut.removeAttribute("onClick");
+   butbut.setAttribute("onClick","modMeDtAjax()");
+   butbut.innerText = '저장';
+   document.getElementById("mdtitle").innerText = "회원수정";
+   var data = '<div class=\"input\"><i class=\"bx bx-user icon\"></i><input type ="text" id = "meName" placeholder="'+meDtMod.meName+'"/></div>';
+   data += '<div class=\"input\"><i class=\"bx bx-phone\"></i><input type="text" id ="meNumber" placeholder="'+meDtMod.meNumber+'" title="형식 01012341234" /></div>';
+   data += '<div class=\"input\"><i class=\"bx bx-envelope icon\"></i><input type = "email" id = "emailName" placeholder="'+meDtMod.meEmail+'"/></div>';/*<span>@<span><select id="juso">';
+   data += '<option value = "return">주소선택</option>'
+   data += '<option value = "daun.net">daun</option>';
+   data += '<option value = "naver.com">naver</option>';
+   data += '<option value = "google.com">GMAIL</option>';
+   data += '<option value = "yahoo.com">yahoo</option>';
+   data += '<option value = "outlook.com">outlook.com</option>';
+   data += '<option value = "nate.com">nate</option>';
+   data += '<option value = "dreamwiz.com">dreamwiz</option>';
+   data += '<option value = "korea.com">korea.com</option></select>*/'</div>';
+   data += '<div><button class=\"btn\" onClick = "modMeDtAjax(\''+mecode+'\')">MOD<button></div>';
+   document.getElementById("mdbody").innerHTML = data;
+   const juso = document.getElementById("juso");
+   /*for(i=0;i<juso.length;i++){
+      if(juso.options[i].value==meDtMod.meEmail.split('@')[1]){
+         juso.options[i].setAttribute('selected', '');
+      }
+   }*/
+   YopenModal();
 }
 
 function modMeDtAjax(mecode){
-	let name =  document.getElementById("meName");
-	let number =  document.getElementById("meNumber");
-	let email =  document.getElementById("emailName");
-	let juso =  document.getElementById("juso").value;
-	let json = [];
-	if(name.value == ""){
-		name = name.placeholder;
-	}else{
-		name = name.value;
-	}
-	if(number.value == ""){
-		number = number.placeholder;
-	}else{
-		number = number.value;
-	}
-	if(email.value == ""){
-		email = email.placeholder+'@'+juso;
-	}else{
-		email = email.value+'@'+juso;
-	}
-		json.push({ctCode : meList[0].ctCode, meCode: mecode, meName : name, meNumber : number , meEmail : email});
-		const data = JSON.stringify(json);
-	ajax("ajax/modMe",data,"getMeList");
+   let name =  document.getElementById("meName");
+   let number =  document.getElementById("meNumber");
+   let email =  document.getElementById("emailName");
+   //let juso =  document.getElementById("juso").value;
+   let json = [];
+   if(name.value == ""){
+      name = name.placeholder;
+   }else{
+      name = name.value;
+   }
+   if(number.value == ""){
+      number = number.placeholder;
+   }else{
+      number = number.value;
+   }
+   if(email.value == ""){
+      email = email.placeholder;
+   }else{
+      email = email.value;
+   }
+      json.push({ctCode : meList[0].ctCode, meCode: mecode, meName : name, meNumber : number , meEmail : email});
+      const data = JSON.stringify(json);
+   ajax("ajax/modMe",data,"getMeList");
 }
 
 function searchMe(ctcode){
@@ -355,7 +354,6 @@ function closeModalIn() {
 	}
 	
 	function ajaxCallback(msg){
-	alert(msg);
 	
 		let ms = document.getElementById("msg");
 		ms.innerText = msg.msg;

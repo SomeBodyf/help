@@ -321,10 +321,19 @@ public class Member extends CommonMethod {
 	}
 
 	public void insTaState(Model model) {
-		Inbodys in = new Inbodys();
-		in = (Inbodys) model.getAttribute("Inbody");
-		model.addAttribute("a1", mu.insTaState(in));
-	}
+	      Inbodys in = new Inbodys();
+	      in = (Inbodys) model.getAttribute("Inbody");
+	      boolean tran = false;
+	      in.setIbDate(in.getIbDate().substring(0, 8));
+	      System.out.println(in);
+	      tranconfig(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
+	      if(this.convertToBoolean(mu.insTaState(in))){
+	         model.addAttribute("a1", 1);
+	         tran = true;
+	      }
+	      System.out.println(tran);
+	      tranend(tran);
+	   }
 
 	public void meHealthMg(Model model) {
 
