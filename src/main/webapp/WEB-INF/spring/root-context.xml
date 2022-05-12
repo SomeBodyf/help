@@ -44,13 +44,13 @@
 	<!-- 오라클 인터페이스 주소 설정해주기 -->
 	<mybatis-spring:scan base-package="com.somebody.db"></mybatis-spring:scan>
 	
-	<!-- 자바에서 메일 보내기 -->
+	<!-- 자바에서 메일 보내기
 	<bean id="javaMail"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.naver.com" />
 		<property name="port" value="587" />
 		<property name="username" value="zmffhqj7144" />
-		<property name="password" value="didhddl714!!" />
+		<property name="password" value="" />
 		<property name="defaultEncoding" value="utf-8" />
 		<property name="javaMailProperties">
 			<props>
@@ -63,5 +63,6 @@
 			</props>
 		</property>
 	</bean>
+ -->
 
 </beans>
